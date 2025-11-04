@@ -1,0 +1,47 @@
+{
+  "name": "turning-point-cms",
+  "version": "1.0.0",
+  "description": "Payload CMS for Turning Point website",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "build": "payload build",
+    "start": "payload start",
+    "generate:types": "payload generate:types",
+    "seed": "tsx src/scripts/seed.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "payload-cms",
+    "turning-point",
+    "website",
+    "cms"
+  ],
+  "author": "Turning Point",
+  "license": "MIT",
+  "dependencies": {
+    "payload": "^3.17.0",
+    "@payloadcms/bundler-webpack": "^1.0.7",
+    "@payloadcms/db-postgres": "^1.0.4",
+    "@payloadcms/plugin-cloud-storage": "^5.1.0",
+    "@payloadcms/richtext-lexical": "^1.0.10",
+    "payload-admin-bar": "^1.0.6",
+    "express": "^4.21.1",
+    "dotenv": "^16.4.5",
+    "bcrypt": "^5.1.1",
+    "graphql": "^16.9.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "typescript": "^5.6.3",
+    "nodemon": "^3.1.7",
+    "tsx": "^4.19.2",
+    "@types/node": "^22.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
