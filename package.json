@@ -46,8 +46,6 @@
   },
   "engines": {
     "node": ">=18.17.0"
-  },
-  "optionalDependencies": {
-    "sharp": "0.32.6"
   }
+  
 }
