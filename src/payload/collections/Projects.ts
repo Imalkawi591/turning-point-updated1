@@ -139,7 +139,7 @@ const Projects: CollectionConfig = {
       name: 'testimonial',
       type: 'relationship',
       relationTo: 'testimonials',
-      hasOne: true,
+      hasMany: false,
       admin: {
         description: 'Client testimonial for this project (optional)',
       },
