@@ -47,9 +47,9 @@ const BlogPosts: CollectionConfig = {
       },
       hooks: {
         beforeValidate: [
-          ({ siblingData, value }) => {
-            if (siblingData.title && !value) {
-              const slug = siblingData.title
+          ({ data, value }) => {
+            if (data.title && !value) {
+              const slug = data.title
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/(^-|-$)/g, '');
@@ -206,8 +206,8 @@ const BlogPosts: CollectionConfig = {
         }
 
         // Auto-calculate read time based on content length if not provided
-        if (!data.readTime && siblingData.content) {
-          const wordCount = siblingData.content.split(/\s+/).length;
+        if (!data.readTime && data.content) {
+          const wordCount = data.content.split(/\s+/).length;
           const readingSpeed = 200; // Average reading speed per minute
           const calculatedReadTime = Math.ceil(wordCount / readingSpeed);
           data.readTime = calculatedReadTime || 1;
