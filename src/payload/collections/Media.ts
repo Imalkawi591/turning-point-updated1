@@ -51,7 +51,6 @@ const Media: CollectionConfig = {
       'image/svg+xml',
       'application/pdf',
     ],
-    filesize: 10 * 1024 * 1024, // 10MB
   },
   fields: [
     {
