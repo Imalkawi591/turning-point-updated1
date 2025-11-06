@@ -199,7 +199,7 @@ const BlogPosts: CollectionConfig = {
   ],
   hooks: {
     beforeChange: [
-      ({ data, siblingData }) => {
+      ({ data }) => {
         // Auto-generate SEO title if not provided
         if (!data.seoTitle && data.title) {
           data.seoTitle = data.title;
