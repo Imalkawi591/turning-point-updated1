@@ -48,7 +48,7 @@ const BlogPosts: CollectionConfig = {
       hooks: {
         beforeValidate: [
           ({ data, value }) => {
-            if (data.title && !value) {
+            if (data?.title && !value) {
               const slug = data.title
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
