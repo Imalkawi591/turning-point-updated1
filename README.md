@@ -1,153 +1,146 @@
-# Turning Point Consulting - Next.js 14 Application
+# Turning Point CMS
 
-A modern web application for Turning Point consulting firm built with Next.js 14, TypeScript, Tailwind CSS, and Payload CMS.
+Payload CMS for the Turning Point website with full content management capabilities.
 
-## 🚀 Tech Stack
+## Features
 
-- **Framework**: Next.js 14.2+ with App Router
-- **Language**: TypeScript (strict mode)
-- **Styling**: Tailwind CSS with custom design system
-- **CMS**: Payload CMS 2.x
-- **Database**: PostgreSQL
-- **Code Quality**: ESLint & Prettier
+- **Admin Panel**: Full-featured admin interface at `/admin`
+- **PostgreSQL Database**: Robust data storage with PostgreSQL
+- **Media Management**: Image optimization and file uploads
+- **Authentication**: Secure admin access with role-based permissions
+- **Rich Text Editor**: Advanced content editing with Lexical
+- **TypeScript Support**: Fully typed with auto-generated types
+- **SEO Tools**: Built-in SEO optimization for all content
 
-## 📁 Project Structure
+## Collections
 
-```
-/src
-  /app          # Next.js App Router pages and routes
-  /components   # Reusable React components
-  /payload      # Payload CMS configuration and collections
-  /lib          # Utility functions and helpers
-  /styles       # Global styles and CSS
-/public         # Static assets
-```
+1. **Pages** - Website pages with rich content and SEO
+2. **Services** - Service offerings with features and related projects
+3. **Projects** - Portfolio items with galleries and testimonials
+4. **Team** - Team member profiles and information
+5. **Blog Posts** - Blog content with categories and tags
+6. **Testimonials** - Client testimonials with ratings
+7. **Contact Submissions** - Contact form submissions
+8. **Site Settings** - Global site configuration (singleton)
+9. **Media** - File and image management
+10. **Users** - Admin user management
 
-## 🛠️ Prerequisites
+## Quick Start
 
-- Node.js 18.17.0 or higher
-- npm 9.6.7 or higher
-- PostgreSQL database
+### Prerequisites
 
-## 🚀 Getting Started
+- Node.js 18+
+- PostgreSQL (or use provided Docker setup)
 
-### 1. Clone the repository
+### Installation
 
-```bash
-git clone <repository-url>
-cd Turning-web
-```
-
-### 2. Install dependencies
-
+1. Clone and install dependencies:
 ```bash
 npm install
 ```
 
-### 3. Set up environment variables
-
-Copy the example environment file and update with your values:
-
+2. Copy environment variables:
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-Required environment variables:
-- `DATABASE_URL`: PostgreSQL connection string
-- `PAYLOAD_SECRET`: Secret key for Payload CMS
-- `NEXT_PUBLIC_SERVER_URL`: Your application URL
-- `SMTP_*`: Email service configuration (Nodemailer)
+3. Set up your environment variables in `.env`:
+```env
+DATABASE_URL=postgresql://payload:password@localhost:5432/turning_point
+PAYLOAD_SECRET=your-super-secret-key-change-this
+```
 
-### 4. Set up the database
+### Option 1: Using Docker (Recommended)
 
-Make sure your PostgreSQL database is running and accessible via the `DATABASE_URL`.
+1. Start PostgreSQL database:
+```bash
+docker-compose up -d
+```
 
-### 5. Start the development server
+### Option 2: Manual PostgreSQL Setup
 
+1. Create database:
+```sql
+CREATE DATABASE turning_point;
+CREATE USER payload WITH PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE turning_point TO payload;
+```
+
+### Start Development
+
+1. Seed the database:
+```bash
+npm run seed
+```
+
+2. Start development server:
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+3. Visit admin panel: `http://localhost:3000/admin`
 
-## 📋 Available Scripts
+**Default Admin Login:**
+- Email: admin@turningpoint.com
+- Password: admin123456
+
+## Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint issues
-- `npm run type-check` - Run TypeScript type checking
-- `npm run format` - Format code with Prettier
-- `npm run format:check` - Check code formatting
-- `npm run payload:generate:types` - Generate Payload CMS types
-- `npm run db:seed` - Seed database with initial data
-- `npm run db:migrate` - Run database migrations
+- `npm run generate:types` - Generate TypeScript types
+- `npm run seed` - Seed database with initial data
+- `npm run typecheck` - Check TypeScript types
 
-## 🎨 Design System
+## Project Structure
 
-The application uses a custom design system with:
-
-### Colors
-- **Primary**: #008ceb (medium blue)
-- **Secondary**: #082846 (midnight blue)
-- **Custom color palette** with various shades for consistency
-
-### Typography
-- **Font**: Inter (professional sans-serif)
-- Responsive typography scaling
-
-### Breakpoints
-- `xs`: 475px
-- `sm`: 640px (Tailwind default)
-- `md`: 768px (Tailwind default)
-- `lg`: 1024px (Tailwind default)
-- `xl`: 1280px (Tailwind default)
-- `2xl`: 1536px (Tailwind default)
-- `3xl`: 1600px (custom)
-
-## 🏗️ Development Guidelines
-
-### Code Style
-- TypeScript strict mode enabled
-- ESLint + Prettier for consistent formatting
-- Absolute imports using `@/` prefix
-
-### File Organization
-- Components in `/src/components`
-- Pages and routes in `/src/app` (App Router)
-- Payload CMS configuration in `/src/payload`
-- Utilities in `/src/lib`
-
-## 📦 Deployment
-
-### Build for Production
-
-```bash
-npm run build
-npm run start
+```
+src/
+├── payload/
+│   ├── collections/          # Collection definitions
+│   ├── access/              # Access control functions
+│   ├── hooks/               # Custom hooks
+│   └── payload.config.ts    # Main Payload configuration
+├── scripts/
+│   └── seed.ts              # Database seeding script
+└── server.ts                # Express server entry point
 ```
 
-### Environment Variables for Production
+## Admin Access Control
 
-Make sure to set all required environment variables in your production environment:
-- `NODE_ENV=production`
-- Database connection
-- Payload CMS secret
-- Server URL
+**Admin Role:**
+- Full access to all collections and settings
+- User management
+- System configuration
 
-## 🤝 Contributing
+**Editor Role:**
+- Create and update content
+- No access to settings or user management
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
+## Development Tips
 
-## 📄 License
+1. **Auto-save**: Content is automatically saved as drafts
+2. **Preview**: Use preview mode to see content before publishing
+3. **Relationships**: All collections are properly linked
+4. **SEO**: Each content type has built-in SEO optimization
+5. **Media**: Images are automatically optimized for web
 
-[Add your license information here]
+## Production Deployment
 
-## 📞 Support
+1. Set production environment variables
+2. Build the project:
+```bash
+npm run build
+```
 
-For support or questions, please contact the development team.
+3. Start production server:
+```bash
+npm start
+```
+
+## Support
+
+For Payload CMS documentation: [payloadcms.com](https://payloadcms.com)
+
+For project-specific issues, contact the development team.

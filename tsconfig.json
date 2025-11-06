@@ -1,44 +1,42 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "es6"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "allowJs": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "baseUrl": ".",
+    "noEmit": false,
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/lib/*": ["./src/lib/*"],
-      "@/app/*": ["./src/app/*"],
-      "@/payload/*": ["./src/payload/*"],
-      "@/styles/*": ["./src/styles/*"]
-    },
-    "forceConsistentCasingInFileNames": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+      "@/*": ["*"],
+      "@/payload/*": ["payload/*"],
+      "@/collections/*": ["payload/collections/*"],
+      "@/access/*": ["payload/access/*"],
+      "@/types/*": ["payload/types/*"],
+      "@/hooks/*": ["payload/hooks/*"]
+    }
   },
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
+    "src/**/*",
+    "payload-types.ts"
   ],
   "exclude": [
-    "node_modules"
-  ]
+    "node_modules",
+    "dist",
+    ".next",
+    "build"
+  ],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }
