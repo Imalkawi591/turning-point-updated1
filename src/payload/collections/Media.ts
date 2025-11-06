@@ -113,7 +113,7 @@ const Media: CollectionConfig = {
         // Auto-generate alt text if not provided
         if (!data.alt && data.filename) {
           const name = data.filename.replace(/\.[^/.]+$/, '');
-          data.alt = name.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+          data.alt = name.replace(/[-_]/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase());
         }
         return data;
       },
