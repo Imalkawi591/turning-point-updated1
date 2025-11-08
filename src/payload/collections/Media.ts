@@ -5,7 +5,7 @@ const Media: CollectionConfig = {
   admin: {
     useAsTitle: 'filename',
     group: 'Media',
-    defaultColumns: ['filename', 'alt', 'filesize', 'updatedAt'],
+    defaultColumns: ['filename', 'alt', 'updatedAt'],
   },
   access: {
     read: () => true,
@@ -16,33 +16,6 @@ const Media: CollectionConfig = {
   upload: {
     staticURL: '/media',
     staticDir: 'media',
-    imageSizes: [
-      {
-        name: 'thumbnail',
-        width: 400,
-        height: 300,
-        position: 'centre',
-      },
-      {
-        name: 'card',
-        width: 800,
-        height: 600,
-        position: 'centre',
-      },
-      {
-        name: 'medium',
-        width: 1200,
-        height: 900,
-        position: 'centre',
-      },
-      {
-        name: 'large',
-        width: 1920,
-        height: 1080,
-        position: 'centre',
-      },
-    ],
-    adminThumbnail: 'thumbnail',
     mimeTypes: [
       'image/jpeg',
       'image/png',
@@ -69,41 +42,6 @@ const Media: CollectionConfig = {
       maxLength: 300,
       admin: {
         description: 'Image caption or description',
-      },
-    },
-    {
-      name: 'filename',
-      type: 'text',
-      admin: {
-        readOnly: true,
-      },
-    },
-    {
-      name: 'mimeType',
-      type: 'text',
-      admin: {
-        readOnly: true,
-      },
-    },
-    {
-      name: 'filesize',
-      type: 'number',
-      admin: {
-        readOnly: true,
-      },
-    },
-    {
-      name: 'width',
-      type: 'number',
-      admin: {
-        readOnly: true,
-      },
-    },
-    {
-      name: 'height',
-      type: 'number',
-      admin: {
-        readOnly: true,
       },
     },
   ],

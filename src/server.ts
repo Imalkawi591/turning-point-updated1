@@ -13,10 +13,9 @@ app.get('/', (_, res) => {
 // Initialize Payload
 async function start() {
   await payload.init({
-    secret: process.env.PAYLOAD_SECRET,
-    express: app,
-    config: path.resolve(__dirname, './payload/payload.config.ts'),
-  });
+  secret: process.env.PAYLOAD_SECRET!,
+  express: app,
+});
 
   // Add your own express routes here
   app.use('/api/v1', (req, res) => {
@@ -32,6 +31,6 @@ async function start() {
 }
 
 start().catch((error) => {
-  payload.logger.error('Error starting server:', error);
+  console.error('Error starting server:', error);
   process.exit(1);
 });

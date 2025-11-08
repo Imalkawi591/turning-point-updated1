@@ -37,9 +37,9 @@ const Services: CollectionConfig = {
       },
       hooks: {
         beforeValidate: [
-          ({ siblingData, value }) => {
-            if (siblingData.title && !value) {
-              const slug = siblingData.title
+          ({ data, value }) => {
+            if (data?.title && !value) {
+              const slug = data.title
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/(^-|-$)/g, '');

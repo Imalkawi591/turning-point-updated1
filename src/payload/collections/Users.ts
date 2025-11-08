@@ -103,8 +103,8 @@ const Users: CollectionConfig = {
     },
   ],
   hooks: {
-    beforeCreate: [
-      ({ data, req }) => {
+  beforeChange: [  // ✅ v2 syntax
+    ({ data, req }) => {
         // Set first user as admin if no role specified
         if (!data.role && req.user === null) {
           data.role = 'admin';

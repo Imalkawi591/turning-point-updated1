@@ -74,7 +74,6 @@ const Testimonials: CollectionConfig = {
       name: 'relatedProject',
       type: 'relationship',
       relationTo: 'projects',
-      hasOne: true,
       admin: {
         description: 'Project this testimonial is about (optional)',
       },
@@ -112,8 +111,7 @@ const Testimonials: CollectionConfig = {
       defaultValue: () => new Date(),
       admin: {
         date: {
-          pickerAppearance: 'day',
-        },
+        pickerAppearance: 'dayAndTime',        },
         description: 'Date when testimonial was received',
       },
     },
@@ -121,7 +119,7 @@ const Testimonials: CollectionConfig = {
       name: 'serviceProvided',
       type: 'relationship',
       relationTo: 'services',
-      hasOne: true,
+      hasMany: false,
       admin: {
         description: 'Service this testimonial is about (optional)',
       },

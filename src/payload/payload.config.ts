@@ -1,30 +1,28 @@
 import { buildConfig } from 'payload/config';
 import { postgresAdapter } from '@payloadcms/db-postgres';
-import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { slateEditor } from '@payloadcms/richtext-slate';
+import { webpackBundler } from '@payloadcms/bundler-webpack';
 import path from 'path';
-import { Users } from './collections/Users';
-import { Media } from './collections/Media';
-import { Pages } from './collections/Pages';
-import { Services } from './collections/Services';
-import { Projects } from './collections/Projects';
-import { Team } from './collections/Team';
-import { BlogPosts } from './collections/BlogPosts';
-import { Testimonials } from './collections/Testimonials';
-import { ContactSubmissions } from './collections/ContactSubmissions';
-import { SiteSettings } from './collections/SiteSettings';
+import Users from './collections/Users';
+import Media from './collections/Media';
+import Pages from './collections/Pages';
+import Services from './collections/Services';
+import Projects from './collections/Projects';
+import Team from './collections/Team';
+import BlogPosts from './collections/BlogPosts';
+import Testimonials from './collections/Testimonials';
+import ContactSubmissions from './collections/ContactSubmissions';
+import SiteSettings from './collections/SiteSettings';
 
 export default buildConfig({
   admin: {
-    user: Users.slug,
-    css: path.resolve(__dirname, 'admin.css'),
-    meta: {
-      titleSuffix: '- Turning Point CMS',
-      favicon: '/favicon.ico',
-    },
-    components: {
-      // Add custom dashboard components here if needed
-    },
+  user: Users.slug,
+  meta: {
+    titleSuffix: '- Turning Point CMS',
+    favicon: '/favicon.ico',
   },
+  bundler: webpackBundler(),
+},
   collections: [
     Users,
     Media,
@@ -37,19 +35,23 @@ export default buildConfig({
     ContactSubmissions,
     SiteSettings,
   ],
-  editor: lexicalEditor(),
+  editor: slateEditor({}),
   db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URL,
+  pool: {
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
     },
-    migrationDir: path.resolve(__dirname, 'migrations'),
-  }),
+  },
+  migrationDir: path.resolve(__dirname, 'migrations'),
+}),
   typescript: {
     outputFile: path.resolve(__dirname, '../../payload-types.ts'),
   },
-  plugins: [
-    // Add plugins here as needed
-  ],
+ plugins: [
+  // Cloudinary integration will be handled through upload hooks in Media collection
+],
+
   cors: [
     process.env.PAYLOAD_PUBLIC_CORS_ORIGIN || 'http://localhost:3000',
     'http://localhost:3000',

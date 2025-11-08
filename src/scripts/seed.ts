@@ -5,10 +5,9 @@ import 'dotenv/config';
 const seed = async () => {
   try {
     await payload.init({
-      local: true,
-      secret: process.env.PAYLOAD_SECRET || 'temp-secret-for-seeding',
-      config: path.resolve(__dirname, '../payload/payload.config.ts'),
-    });
+  secret: process.env.PAYLOAD_SECRET || 'temp-secret-for-seeding',
+  local: true,
+});
 
     console.log('🌱 Starting database seed...');
 
@@ -45,8 +44,8 @@ const seed = async () => {
     });
 
     if (!existingSettings) {
-      const siteSettings = await payload.createGlobal({
-        slug: 'site-settings',
+      const siteSettings = await payload.create({
+        collection: 'site-settings',
         data: {
           siteName: 'Turning Point',
           tagline: 'Transforming Ideas into Digital Reality',

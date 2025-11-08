@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022"],
+    "lib": [
+      "ES2022"
+    ],
     "module": "CommonJS",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -15,21 +17,41 @@
     "noEmit": false,
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"],
-      "@/payload/*": ["payload/*"],
-      "@/collections/*": ["payload/collections/*"],
-      "@/access/*": ["payload/access/*"],
-      "@/types/*": ["payload/types/*"],
-      "@/hooks/*": ["payload/hooks/*"]
-    }
+      "@/*": [
+        "*"
+      ],
+      "@/payload/*": [
+        "payload/*"
+      ],
+      "@/collections/*": [
+        "payload/collections/*"
+      ],
+      "@/access/*": [
+        "payload/access/*"
+      ],
+      "@/types/*": [
+        "payload/types/*"
+      ],
+      "@/hooks/*": [
+        "payload/hooks/*"
+      ]
+    },
+    "incremental": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
-    "src/**/*",
-    "payload-types.ts"
-  ],
+  "src/**/*",
+  "*.ts",
+  ".next/types/**/*.ts"
+],
   "exclude": [
     "node_modules",
     "dist",
@@ -37,6 +59,9 @@
     "build"
   ],
   "ts-node": {
-    "require": ["tsconfig-paths/register"]
+    "require": [
+      "tsconfig-paths/register"
+    ]
   }
 }
+

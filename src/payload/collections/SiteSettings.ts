@@ -5,15 +5,15 @@ const SiteSettings: CollectionConfig = {
   admin: {
     useAsTitle: 'siteName',
     group: 'Settings',
+    description: 'Global site settings - Only create ONE entry',
   },
   access: {
     read: () => true, // Public access for frontend
-    create: () => false, // Prevent multiple instances
-    update: () => true,
+    create: ({ req }) => !!req.user, // Only admins can create
+    update: ({ req }) => !!req.user, // Only admins can update
     delete: () => false, // Prevent deletion
   },
   versions: false,
-  singleton: true,
   fields: [
     {
       name: 'siteName',
